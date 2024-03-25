@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <style>
+    body {
+        font-family: sans-serif;
+        text-align: center;
+    }
+    #hodiny {
+        font-size: 48px;
+        margin: 50px auto;
+    }
+</style>
+</head>
+<body>
+<div id="hodiny"></div>
+<script>
+    function aktualizovatCas() {
+        var datum = new Date();
+        var hodiny = datum.getHours().toString().padStart(2, "0");
+        var minuty = datum.getMinutes().toString().padStart(2, "0");
+        var sekundy = datum.getSeconds().toString().padStart(2, "0");
+        document.getElementById("hodiny").innerHTML = 
+            hodiny + ":" + minuty + ":" + sekundy;
+    }
+    setInterval(aktualizovatCas, 1000);
+    aktualizovatCas();
+</script>
+
+
+
+
+
+    <h1>Sledování Času Aktivity</h1>
+    <p>Zadejte název aktivity:</p>
+    <input type="text" id="aktivita" name="aktivita">
+    <br>
+    <p>Spusťte stopky:</p>
+    <button type="button" id="start" onclick="start()">Spustit</button>
+    <button type="button" id="stop" onclick="stop()">Zastavit</button>
+    <br>
+    <p>Uplynulý čas:</p>
+    <span id="cas">00:00:00</span>
+    <br>
+    <script>
+        var startTime;
+        var elapsedTime = 0;
+        var interval;
+
+        function start() {
+            startTime = new Date().getTime();
+            interval = setInterval(function() {
+                elapsedTime = new Date().getTime() - startTime;
+                var minutes = Math.floor(elapsedTime / (1000 * 60));
+                var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+                var milliseconds = Math.floor((elapsedTime % (1000 * 60)) % 1000);
+                document.getElementById("cas").innerHTML = 
+                    minutes.toString().padStart(2, "0") + ":" +
+                    seconds.toString().padStart(2, "0") + ":" +
+                    milliseconds.toString().padStart(3, "0");
+            }, 10);
+            document.getElementById("start").disabled = true;
+            document.getElementById("stop").disabled = false;
+        }
+
+        function stop() {
+            clearInterval(interval);
+            document.getElementById("start").disabled = false;
+            document.getElementById("stop").disabled = true;
+        }
+    </script>
+    <h1>Sledování Času Aktivity s Upozorněním</h1>
+    <p>Zadejte název aktivity:</p>
+    <input type="text" id="aktivita" name="aktivita">
+    <br>
+    <p>Zadejte denní limit (v minutách):</p>
+    <input type="number" id="limit" name="limit">
+    <br>
+    <p>Spusťte stopky:</p>
+    <button type="button" id="start" onclick="start()">Spustit</button>
+    <button type="button" id="stop" onclick="stop()">Zastavit</button>
+    <br>
+    <p>Uplynulý čas:</p>
+    <span id="cas">00:00:00</span>
+    <br>
+    <script>
+        var startTime;
+        var elapsedTime = 0;
+        var interval;
+
+        function start() {
+            startTime = new Date().getTime();
+            interval = setInterval(function() {
+                elapsedTime = new Date().getTime() - startTime;
+                var minutes = Math.floor(elapsedTime / (1000 * 60));
+                var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+                var milliseconds = Math.floor((elapsedTime % (1000 * 60)) % 1000);
+                document.getElementById("cas").innerHTML = 
+                    minutes.toString().padStart(2, "0") + ":" +
+                    seconds.toString().padStart(2, "0") + ":" +
+                    milliseconds.toString().padStart(3, "0");
+            }, 10);
+            document.getElementById("start").disabled = true;
+            document.getElementById("stop").disabled = false;
+        }
+
+        function stop() {
+            clearInterval(interval);
+            document.getElementById("start").disabled = false;
+            document.getElementById("stop").disabled = true;
+        }
+        limit = document.getElementById("limit").value;
+    </script>
+     <h1>Sledování Času na Sociálních Sítích</h1>
+     <p>Zadejte název sítě:</p>
+     <input type="text" id="sit" name="sit">
+     <br>
+     <p>Spusťte stopky:</p>
+     <button type="button" id="start" onclick="start()">Spustit</button>
+     <button type="button" id="stop" onclick="stop()">Zastavit</button>
+     <br>
+     <p>Uplynulý čas:</p>
+     <span id="cas">00:00:00</span>
+     <br>
+     <p>Historie:</p>
+     <ul id="historie"></ul>
+     <script>
+         var startTime;
+        var elapsedTime = 0;
+        var interval;
+
+        function start() {
+            startTime = new Date().getTime();
+            interval = setInterval(function() {
+                elapsedTime = new Date().getTime() - startTime;
+                var minutes = Math.floor(elapsedTime / (1000 * 60));
+                var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+                var milliseconds = Math.floor((elapsedTime % (1000 * 60)) % 1000);
+                document.getElementById("cas").innerHTML = 
+                    minutes.toString().padStart(2, "0") + ":" +
+                    seconds.toString().padStart(2, "0") + ":" +
+                    milliseconds.toString().padStart(3, "0");
+            }, 10);
+            document.getElementById("start").disabled = true;
+            document.getElementById("stop").disabled = false;
+        }
+
+        function stop() {
+            clearInterval(interval);
+            document.getElementById("start").disabled = false;
+            document.getElementById("stop").disabled = true;
+        }
+     </script>
+</body>
+</html>
+<h1>Sledování Času na Sociálních Sítích s Limitem</h1>
+    <p>Zadejte název sítě:</p>
+    <input type="text" id="sit" name="sit">
+    <br>
+    <p>Zadejte denní limit (v minutách):</p>
+    <input type="number" id="limit" name="limit">
+    <br>
+    <p>Spusťte stopky:</p>
+    <button type="button4" id="start4" onclick="start4()">Spustit</button>
+    <button type="button4" id="stop4" onclick="stop4()">Zastavit</button>
+    <br>
+    <p>Uplynulý čas:</p>
+    <span id="cas">00:00:00</span>
+    <br>
+    <p>Zpráva:</p>
+    <span id="zprava"></span>
+    <script>
+        var startTime;
+        var elapsedTime = 0;
+        var interval;
+
+        function start() {
+            startTime = new Date().getTime();
+            interval = setInterval(function() {
+                elapsedTime = new Date().getTime() - startTime;
+                var minutes = Math.floor(elapsedTime / (1000 * 60));
+                var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+                var milliseconds = Math.floor((elapsedTime % (1000 * 60)) % 1000);
+                document.getElementById("cas").innerHTML = 
+                    minutes.toString().padStart(2, "0") + ":" +
+                    seconds.toString().padStart(2, "0") + ":" +
+                    milliseconds.toString().padStart(3, "0");
+            }, 10);
+            document.getElementById("start").disabled = true;
+            document.getElementById("stop").disabled = false;
+        }
+
+        function stop() {
+            clearInterval(interval);
+            document.getElementById("start").disabled = false;
+            document.getElementById("stop").disabled = true;
+        }
+        
+            
